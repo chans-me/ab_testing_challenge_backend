@@ -18,19 +18,25 @@ ActiveRecord::Schema.define(version: 2021_06_03_061853) do
   create_table "article_variants", force: :cascade do |t|
     t.bigint "article_id"
     t.string "variant_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["article_id", "variant_name"], name: "article_variants_unique_composite_keys", unique: true
     t.index ["article_id"], name: "index_article_variants_on_article_id"
   end
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "visitor_article_mappings", force: :cascade do |t|
     t.bigint "visitor_id"
     t.bigint "article_id"
     t.bigint "article_variant_id"
-    t.boolean "signup_event", default: false
+    t.integer "signup_event", limit: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_visitor_article_mappings_on_article_id"
     t.index ["article_variant_id"], name: "index_visitor_article_mappings_on_article_variant_id"
     t.index ["visitor_id", "article_id"], name: "visitor_article_mappings_unique_composite_keys", unique: true
@@ -39,11 +45,15 @@ ActiveRecord::Schema.define(version: 2021_06_03_061853) do
 
   create_table "visitor_article_page_views", force: :cascade do |t|
     t.bigint "visitor_article_mapping_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["visitor_article_mapping_id"], name: "index_visitor_article_page_views_on_visitor_article_mapping_id"
   end
 
   create_table "visitors", force: :cascade do |t|
     t.string "visitor_address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["visitor_address"], name: "index_visitors_on_visitor_address", unique: true
   end
 

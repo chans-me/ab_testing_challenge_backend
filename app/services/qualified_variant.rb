@@ -13,8 +13,8 @@ class QualifiedVariant
         visitor_mapping = get_visitor_article_mapping visitor
         variant_name = get_variant_details visitor_mapping
         track_page_view visitor_mapping
+        [variant_name, visitor.id]
       end
-      [variant_name, visitor.id]
     rescue => error
       raise "Error in finding article variant: #{error.message}"
     end
