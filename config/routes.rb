@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post 'ab_testing/variant_info'
       post 'ab_testing/signup_event'
-      get 'ab_testing/test_results/:article_id'
+      get 'ab_testing/test_results/:article_id' => 'ab_testing#test_results'
     end
   end
 end
